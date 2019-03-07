@@ -22,6 +22,8 @@ steph_table = dash_table.DataTable(
     id='table',
     columns=[{"name": i, "id": i} for i in df.columns],
     data=df.to_dict("rows"),
+    style_table={'overflowX': 'scroll',
+                 'color': 'black'},
 )
 
 
@@ -74,7 +76,7 @@ bar_field_goals = dcc.Graph(
                         )
                     ),
                 ],
-                'layout' : go.Layout(
+                'layout' : go.Layout(  
                     title='Field Goals',
                     xaxis= {'title': 'Season',
                             'type': 'category'},
@@ -86,25 +88,32 @@ bar_field_goals = dcc.Graph(
 
 
 app.layout = html.Div([
-    html.H1(children='Stephen Curry'),
-    html.H2(children='Golden State Warriors, 30, PG'),
-    html.P(children='Born: March 14, 1988 in Akron, OH'),
-    html.P(children='Age: 30'),
-    html.P(children='Drafted: 2009: 1st Rnd, 7th by the Golden State Warriors'),
-    html.P(children='College: Davidson'),
+    html.Img(src='/assets/steph_curry.jpg', style={'float':'right', 'maxWidth':500, 'padding':24}),
     html.Div([
-        html.H3(children='Career Statistics'),
-        html.P(children= 'Points per Game: ' + str(df['PTS'][10])),
-        html.P(children= 'Assists per Game: ' + str(df['AST'][10])),
-        html.P(children= 'Rebounds per Game: ' + str(df['TRB'][10])),
+        html.H1(children='Stephen Curry'),
+        html.H2(children='Golden State Warriors, 30, PG'),
+        html.P(children='Born: March 14, 1988 in Akron, OH'),
+        html.P(children='Age: 30'),
+        html.P(children='Drafted: 2009: 1st Rnd, 7th by the Golden State Warriors'),
+        html.P(children='College: Davidson'),
+        html.Div([
+            html.H3(children='Career Statistics'),
+            html.P(children= 'Points per Game: ' + str(df['PTS'][10])),
+            html.P(children= 'Assists per Game: ' + str(df['AST'][10])),
+            html.P(children= 'Rebounds per Game: ' + str(df['TRB'][10])),
+            html.P(children= 'Steals per Game: ' + str(df['STL'][10])),
+            html.P(children= 'Blocks per Game: ' + str(df['BLK'][10])),
+        ]),
     ]),
+
     steph_table,
 
     scatter_plot_points,
 
     bar_field_goals
 
-])
+], style={'padding': 64, 'color':'white'},  
+)
 
 
 
