@@ -27,14 +27,16 @@ steph_table = dash_table.DataTable(
 )
 
 
-scatter_plot_points = dcc.Graph(
+plot_points = dcc.Graph(
             id='pts-per-season',
             figure={
                 'data': [
-                    go.Scatter(
+                    go.Bar(
                         x=df['Season'],
                         y=df['PTS'],
-                        mode='markers'
+                        marker=go.bar.Marker(
+                            color='rgb(0, 0, 255)'
+                        )
                     ),
                 ],
                 'layout': go.Layout(
@@ -47,33 +49,28 @@ scatter_plot_points = dcc.Graph(
             }
         )
 
-bar_field_goals = dcc.Graph(
+
+field_goals = dcc.Graph(
             id='field-goals',
             figure={
                 'data': [
-                    go.Bar(
+                    go.Scatter(
                         x=df['Season'],
                         y=df['3P'],
                         name='Three Pointers',
-                        marker=go.bar.Marker(
-                            color='rgb(255, 255, 0)'
-                        )
+                        mode='lines+markers'
                     ),
-                    go.Bar(
+                    go.Scatter(
                         x=df['Season'],
                         y=df['2P'],
                         name='Two Pointers',
-                        marker=go.bar.Marker(
-                            color='rgb(0, 0, 255)'
-                        )
+                        mode='lines+markers'
                     ),
-                    go.Bar(
+                    go.Scatter(
                         x=df['Season'],
                         y=df['FT'],
                         name='Free Throws',
-                        marker=go.bar.Marker(
-                            color='rgb(0, 255, 100)'
-                        )
+                        mode='lines+markers',
                     ),
                 ],
                 'layout' : go.Layout(  
@@ -81,7 +78,7 @@ bar_field_goals = dcc.Graph(
                     xaxis= {'title': 'Season',
                             'type': 'category'},
                     yaxis={'title': 'Field Goals'},
-                    hovermode='closest'
+                    hovermode='closest',
                 )
             }   
         )
@@ -108,9 +105,9 @@ app.layout = html.Div([
 
     steph_table,
 
-    scatter_plot_points,
+    plot_points,
 
-    bar_field_goals
+    field_goals
 
 ], style={'padding': 64, 'color':'white'},  
 )
