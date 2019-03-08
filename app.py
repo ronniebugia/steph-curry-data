@@ -40,10 +40,10 @@ plot_points = dcc.Graph(
                     ),
                 ],
                 'layout': go.Layout(
-                    title='Points per Season',
+                    title='Points per Game',
                     xaxis= {'title': 'Season',
                             'type': 'category'},
-                    yaxis={'title': 'Points'},
+                    yaxis={'title': 'Points per Game'},
                     hovermode='closest'
                 )
             }
@@ -57,19 +57,19 @@ field_goals = dcc.Graph(
                     go.Scatter(
                         x=df['Season'],
                         y=df['3P'],
-                        name='Three Pointers',
+                        name='Three Pointers per Game',
                         mode='lines+markers'
                     ),
                     go.Scatter(
                         x=df['Season'],
                         y=df['2P'],
-                        name='Two Pointers',
+                        name='Two Pointers per Game',
                         mode='lines+markers'
                     ),
                     go.Scatter(
                         x=df['Season'],
                         y=df['FT'],
-                        name='Free Throws',
+                        name='Free Throws per Game',
                         mode='lines+markers',
                     ),
                 ],
