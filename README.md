@@ -13,7 +13,7 @@ plotly
 Clone this repository on your computer then cd into repository
 
 ```
-git clone https://github.com/ronniebugia/mtcars.git
+git clone https://github.com/ronniebugia/steph-curry-data.git
 cd mtcars
 ```
 
